@@ -1,11 +1,18 @@
 import "./index.css";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Paper, Typography, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import React from "react";
 
 /**
  * Component with Product information
  * @returns {Component<Props>}
  */
 const ProductInfo = () => {
+  const [sku, setSku] = React.useState('');
+
+  const handleChange = (event: any) => {
+    setSku(event.target.value);
+  };
+
   return (
     <div className="productInfo">
       <Grid container className="productGrid" spacing={2}>
@@ -36,6 +43,23 @@ const ProductInfo = () => {
               706.93
             </Typography>
           </Grid>
+          <Grid item lg={4}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Color and Size</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sku}
+                label="Color and Size"
+                onChange={handleChange}
+              >
+                <MenuItem value={"Black 29W X 32L"}>Black 29W X 32L</MenuItem>
+                <MenuItem value={"Dark Stonewash 29W X 32L"}>Dark Stonewash 29W X 32L</MenuItem>
+              </Select>
+            </FormControl>
+
+          </Grid>
+
           <Grid item lg={12} />
         </Grid>
       </Grid>
